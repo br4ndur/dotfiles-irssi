@@ -1,0 +1,356 @@
+servers = (
+  {
+    address = "mozilla.se.eu.dal.net";
+    chatnet = "Dalnet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "powertech.no.eu.dal.net";
+    chatnet = "Dalnet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.dal.net";
+    chatnet = "Dalnet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "gibson.freenode.net";
+    port = "7000";
+    chatnet = "Freenode";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  Dalnet = {
+    type = "IRC";
+    nick = "branduren";
+    username = "branch";
+    realname = "branch";
+    usermode = "+i";
+  };
+  Freenode = {
+    type = "IRC";
+    nick = "branduren";
+    username = "branduren";
+    realname = "branduren";
+    usermode = "+i";
+  };
+};
+
+channels = (
+  { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "yes"; },
+  { name = "#diku"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#zomg_pwnies"; chatnet = "Freenode"; autojoin = "yes"; }
+);
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  N = "names";
+  T = "topic";
+  C = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  CALC = "exec - if which bc &>/dev/null\\; then echo '$*' | bc | awk '{print \"$*=\"$$1}'\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
+  EXEMPTLIST = "mode $C +e";
+  ATAG = "WINDOW SERVER";
+  wave = "me waves. Hi there!";
+  ns = "/msg NickServ";
+  id = "/nickServ identify";
+  cs = "msg chanserv";
+  crickets = "me hears crickets. Chirp! Chirp!";
+  slap = "me smacks $0 with a pilot whale";
+  shrug = "me shrugs. Whatcha gonna do?";
+  salute = "me salutes $0";
+  botmail = "msg memoserv";
+  dalc = "msg chanserv@services.dal.net";
+  daln = "msg nickserv@services.dal.net";
+};
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if it's argument isn't
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isn't empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    topicbarstart = "{topicsbstart}";
+    topicbarend = "{topicsbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    time = "{sb $Z}";
+    user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    window = "{sb $winref:$tag/$itemname{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]itemname}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = " Irssi v$J - http://irssi.org/help/";
+
+    # all of these treated specially, they're only displayed when needed
+    lag = "{sb Lag: $0-}";
+    act = "{sb Act: $0-}";
+    more = "-- more --";
+  };
+
+  # there's two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+      disabled = "no";
+
+      # window, root
+      type = "window";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "1";
+      # active, inactive, always
+      visible = "active";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+        usercount = { };
+      };
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # we treat input line as yet another statusbar :) It's possible to
+    # add other items before or after the input line item.
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      # we want to be at the bottom always
+      position = "100";
+      visible = "always";
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        # treated specially, this is the real input line.
+        input = { priority = "10"; };
+      };
+    };
+
+    # topicbar
+    topic = {
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        topicbarstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        topicbarend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+settings = {
+  core = {
+    real_name = "branduren";
+    user_name = "branduren";
+    nick = "branduren";
+    quit_message = "bibbidi babbidi boo";
+    server_connect_timeout = "3min";
+
+    recode_out_default_charset = "UTF-8";
+    recode_autodetect_utf8 = "yes";
+    recode_fallback = "ISO-8859-1";
+    recode = "yes";
+    recode_transliterate = "yes";
+  };
+  "fe-text" = {
+    actlist_sort = "refnum";
+    autostick_split_windows = "yes";
+    scrollback_lines = "2000";
+  };
+  "irc/core" = { alternate_nick = "branduren_"; };
+  "perl/core/scripts" = {
+    awl_prefer_name = "yes";
+    nicklist_automode = "SCREEN";
+    awl_display_key = "$Q%K|%n$H$C$S";
+    nicklist_width = "20";
+  };
+  "fe-common/core" = {
+    term_charset = "utf-8";
+    autolog = "no";
+    autolog_level = "MSGS";
+  };
+};
+### {{{  autolog_path = "~/.irclogs/$tag/${0}/${0}-%Y-%m-%d";
+
+hilights = (
+  { text = "branduruen"; nick = "no"; word = "yes"; },
+  { text = "@branduren"; nick = "yes"; word = "yes"; }
+);
+
+logs = {
+  ### {{{
+  ### freenode    #diku  {{{
+
+  "~/.irclogs/freenode/diku/diku-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = (
+      { type = "target"; name = "#diku"; server = "freenode"; }
+    );
+  };
+
+  ### }}}
+  ### freenode      #zomg_pwnies  {{{
+
+  "~/.irclogs/freenode/zomg_pwnies/zomg_pwnies-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = (
+      { type = "target"; name = "#zomg_pwnies"; server = "freenode"; }
+    );
+  };
+
+  ### }}}
+  ### dalnet        #faroese_chat  {{{
+
+  "~/.irclogs/dalnet/faroese_chat/faroese_chat-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = (
+      { type = "target"; name = "#faroese_chat"; server = "oftc"; }
+    );
+  };
+
+  ### }}}
+  ### }}}
+};
+
+windows = {
+  1 = {
+    immortal = "yes";
+    name = "(status)";
+    level = "ALL";
+    sticky = "yes";
+  };
+  2 = { name = "hilight"; sticky = "yes"; };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#faroese_chat";
+        tag = "Dalnet";
+      }
+    );
+    sticky = "yes";
+    parent = "1";
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#diku";
+        tag = "Freenode";
+      }
+    );
+    sticky = "yes";
+    parent = "1";
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#zomg_pwnies";
+        tag = "Freenode";
+      }
+    );
+    sticky = "yes";
+    parent = "1";
+  };
+};
+mainwindows = {
+  1 = { first_line = "6"; lines = "45"; };
+  2 = { first_line = "1"; lines = "5"; };
+};
