@@ -1,4 +1,17 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+
 servers = (
+  {
+    address = "irc.eu.dal.net";
+    chatnet = "Dalnet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
   {
     address = "mozilla.se.eu.dal.net";
     chatnet = "Dalnet";
@@ -16,17 +29,17 @@ servers = (
     autoconnect = "yes";
   },
   {
-    address = "irc.dal.net";
-    chatnet = "Dalnet";
-    port = "6667";
-    use_ssl = "no";
-    ssl_verify = "no";
-    autoconnect = "yes";
-  },
-  {
     address = "gibson.freenode.net";
     port = "7000";
     chatnet = "Freenode";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address = "labitat.dk";
+    port = "9999";
+    chatnet = "Labitat";
     use_ssl = "yes";
     ssl_verify = "yes";
     autoconnect = "yes";
@@ -36,7 +49,7 @@ servers = (
 chatnets = {
   Dalnet = {
     type = "IRC";
-    nick = "branduren";
+    nick = "branch";
     username = "branch";
     realname = "branch";
     usermode = "+i";
@@ -48,10 +61,18 @@ chatnets = {
     realname = "branduren";
     usermode = "+i";
   };
+  Labitat = {
+    type = "IRC";
+    nick = "branduren";
+    username = "branduren";
+    realname = "branduren";
+    usermode = "+i";
+  };
 };
 
 channels = (
   { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "yes"; },
+  { name = "#labitat"; chatnet = "Labitat"; autojoin = "yes"; },
   { name = "#diku"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#zomg_pwnies"; chatnet = "Freenode"; autojoin = "yes"; }
 );
@@ -226,6 +247,13 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -263,7 +291,7 @@ settings = {
 ### {{{  autolog_path = "~/.irclogs/$tag/${0}/${0}-%Y-%m-%d";
 
 hilights = (
-  { text = "branduruen"; nick = "no"; word = "yes"; },
+  { text = "branduruen"; nick = "yes"; word = "yes"; },
   { text = "@branduren"; nick = "yes"; word = "yes"; }
 );
 
@@ -297,7 +325,17 @@ logs = {
     auto_open = "yes";
     level = "ALL";
     items = (
-      { type = "target"; name = "#faroese_chat"; server = "oftc"; }
+      { type = "target"; name = "#faroese_chat"; server = "dalnet"; }
+    );
+  };
+
+  ### Labitat        #labitat  {{{
+
+  "~/.irclogs/labitat/labitat/labitat-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = (
+      { type = "target"; name = "#labitat"; server = "labitat"; }
     );
   };
 
