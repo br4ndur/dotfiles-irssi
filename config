@@ -1,11 +1,6 @@
-;; This buffer is for notes you don't want to save, and for Lisp evaluation.
-;; If you want to create a file, visit that file with C-x C-f,
-;; then enter the text in that file's own buffer.
-
-
 servers = (
   {
-    address = "irc.eu.dal.net";
+    address = "mozilla.se.eu.dal.net";
     chatnet = "Dalnet";
     port = "6667";
     use_ssl = "no";
@@ -13,7 +8,7 @@ servers = (
     autoconnect = "yes";
   },
   {
-    address = "mozilla.se.eu.dal.net";
+    address = "irc.eu.dal.net";
     chatnet = "Dalnet";
     port = "6667";
     use_ssl = "no";
@@ -30,6 +25,14 @@ servers = (
   },
   {
     address = "gibson.freenode.net";
+    port = "7000";
+    chatnet = "Freenode";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address = "holmes.freenode.net";
     port = "7000";
     chatnet = "Freenode";
     use_ssl = "yes";
@@ -244,13 +247,6 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
