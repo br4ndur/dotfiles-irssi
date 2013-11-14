@@ -1,13 +1,5 @@
 servers = (
   {
-    address = "mozilla.se.eu.dal.net";
-    chatnet = "Dalnet";
-    port = "6667";
-    use_ssl = "no";
-    ssl_verify = "no";
-    autoconnect = "yes";
-  },
-  {
     address = "irc.eu.dal.net";
     chatnet = "Dalnet";
     port = "6667";
@@ -48,6 +40,15 @@ servers = (
     autoconnect = "yes";
   }
 );
+
+#  {
+#    address = "mozilla.se.eu.dal.net";
+#    chatnet = "Dalnet";
+#    port = "6667";
+#    use_ssl = "no";
+#    ssl_verify = "no";
+#    autoconnect = "yes";
+#  },
 
 chatnets = {
   Dalnet = {
@@ -250,6 +251,13 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -298,7 +306,7 @@ logs = {
   "~/.irclogs/freenode/diku/diku-%Y-%m-%d" = {
     auto_open = "yes";
     level = "ALL";
-    items = (
+    items = ( 
       { type = "target"; name = "#diku"; server = "freenode"; }
     );
   };
@@ -340,7 +348,7 @@ logs = {
 };
 
 windows = {
-  1 = {
+  1 = { 
     immortal = "yes";
     name = "(status)";
     level = "ALL";
