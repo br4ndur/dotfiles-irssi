@@ -1,22 +1,14 @@
 servers = (
   {
-    address = "irc.eu.dal.net";
+    address = "-ssl punch.dal.net 6697";
     chatnet = "Dalnet";
-    port = "6667";
-    use_ssl = "no";
+    port = "6697";
+    use_ssl = "yes";
     ssl_verify = "no";
     autoconnect = "yes";
   },
   {
-    address = "powertech.no.eu.dal.net";
-    chatnet = "Dalnet";
-    port = "6667";
-    use_ssl = "no";
-    ssl_verify = "no";
-    autoconnect = "yes";
-  },
-  {
-    address = "gibson.freenode.net";
+    address = "sinisalo.freenode.net";
     port = "7000";
     chatnet = "Freenode";
     use_ssl = "yes";
@@ -37,18 +29,9 @@ servers = (
     chatnet = "Labitat";
     use_ssl = "yes";
     ssl_verify = "yes";
-    autoconnect = "yes";
+    autoconnect = "no";
   }
 );
-
-#  {
-#    address = "mozilla.se.eu.dal.net";
-#    chatnet = "Dalnet";
-#    port = "6667";
-#    use_ssl = "no";
-#    ssl_verify = "no";
-#    autoconnect = "yes";
-#  },
 
 chatnets = {
   Dalnet = {
@@ -75,11 +58,12 @@ chatnets = {
 };
 
 channels = (
+  { name = "#testsumriggar"; chatnet = "Dalnet"; autojoin = "yes"; },
   { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "yes"; },
   { name = "#labitat"; chatnet = "Labitat"; autojoin = "yes"; },
-  { name = "#diku"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#zomg_pwnies"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#diku"; chatnet = "Freenode"; autojoin = "no"; }
 );
+
 
 aliases = {
   J = "join";
@@ -304,7 +288,7 @@ logs = {
   ### freenode    #diku  {{{
 
   "~/.irclogs/freenode/diku/diku-%Y-%m-%d" = {
-    auto_open = "yes";
+    auto_open = "no";
     level = "ALL";
     items = ( 
       { type = "target"; name = "#diku"; server = "freenode"; }
@@ -315,7 +299,7 @@ logs = {
   ### freenode      #zomg_pwnies  {{{
 
   "~/.irclogs/freenode/zomg_pwnies/zomg_pwnies-%Y-%m-%d" = {
-    auto_open = "yes";
+    auto_open = "no";
     level = "ALL";
     items = (
       { type = "target"; name = "#zomg_pwnies"; server = "freenode"; }
