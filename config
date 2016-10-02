@@ -52,7 +52,7 @@ chatnets = {
 
 channels = (
   { name = "#faroese"; chatnet = "Dalnet"; autojoin = "yes"; },
-  { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "no"; },
+  { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "yes"; },
 );
 
 
