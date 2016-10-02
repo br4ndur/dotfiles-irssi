@@ -48,20 +48,11 @@ chatnets = {
     realname = "branduren";
     usermode = "+i";
   };
-  Labitat = {
-    type = "IRC";
-    nick = "branduren";
-    username = "branduren";
-    realname = "branduren";
-    usermode = "+i";
-  };
 };
 
 channels = (
-  { name = "#testsumriggar"; chatnet = "Dalnet"; autojoin = "yes"; },
-  { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "yes"; },
-  { name = "#labitat"; chatnet = "Labitat"; autojoin = "yes"; },
-  { name = "#diku"; chatnet = "Freenode"; autojoin = "no"; }
+  { name = "#faroese"; chatnet = "Dalnet"; autojoin = "yes"; },
+  { name = "#faroese_chat"; chatnet = "Dalnet"; autojoin = "no"; },
 );
 
 
@@ -287,43 +278,18 @@ logs = {
   ### {{{
   ### freenode    #diku  {{{
 
-  "~/.irclogs/freenode/diku/diku-%Y-%m-%d" = {
-    auto_open = "no";
-    level = "ALL";
-    items = ( 
-      { type = "target"; name = "#diku"; server = "freenode"; }
-    );
-  };
-
   ### }}}
   ### freenode      #zomg_pwnies  {{{
 
-  "~/.irclogs/freenode/zomg_pwnies/zomg_pwnies-%Y-%m-%d" = {
-    auto_open = "no";
-    level = "ALL";
-    items = (
-      { type = "target"; name = "#zomg_pwnies"; server = "freenode"; }
-    );
-  };
 
   ### }}}
   ### dalnet        #faroese_chat  {{{
 
-  "~/.irclogs/dalnet/faroese_chat/faroese_chat-%Y-%m-%d" = {
+  "~/.log/dalnet/faroese_chat/faroese_chat-%Y-%m-%d" = {
     auto_open = "yes";
     level = "ALL";
     items = (
       { type = "target"; name = "#faroese_chat"; server = "dalnet"; }
-    );
-  };
-
-  ### Labitat        #labitat  {{{
-
-  "~/.irclogs/labitat/labitat/labitat-%Y-%m-%d" = {
-    auto_open = "yes";
-    level = "ALL";
-    items = (
-      { type = "target"; name = "#labitat"; server = "labitat"; }
     );
   };
 
