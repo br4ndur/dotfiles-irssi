@@ -276,7 +276,7 @@ settings = {
     autolog_level = "MSGS";
   };
 };
-### {{{  autolog_path = "~/.irclogs/$tag/${0}/${0}-%Y-%m-%d";
+### {{{  autolog_path = "~/.log/$tag/${0}/${0}-%Y-%m-%d";
 
 hilights = (
   { text = "branduruen"; nick = "yes"; word = "yes"; },
